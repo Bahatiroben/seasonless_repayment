@@ -1,9 +1,23 @@
 import { Container } from "inversify";
 import { SERVICESTYPES } from "../types";
-import {ISeasonServiceInterface, SeasonService} from "../index";
+import {
+    ISeasonServiceInterface,
+    ICustomerServiceInterface, 
+    IRepaymentServiceInterface, 
+    IRepaymentUploadServiceInterface, 
+    ICustomerSummaryServiceInterface,
+    SeasonService, 
+    RepaymentService, 
+    RepaymentUploadService, 
+    CustomerService, 
+    CustomerSummaryService} from "../index";
 
-const DServiceContainer = new Container();
+const CservicesContainer = new Container();
 
-DServiceContainer.bind<ISeasonServiceInterface>(SERVICESTYPES.seasonService).to(SeasonService);
+CservicesContainer.bind<ISeasonServiceInterface>(SERVICESTYPES.seasonService).to(SeasonService);
+CservicesContainer.bind<ICustomerServiceInterface>(SERVICESTYPES.customerService).to(CustomerService);
+CservicesContainer.bind<IRepaymentServiceInterface>(SERVICESTYPES.repaymentService).to(RepaymentService);
+CservicesContainer.bind<IRepaymentUploadServiceInterface>(SERVICESTYPES.repaymentUploadService).to(RepaymentUploadService);
+CservicesContainer.bind<ICustomerSummaryServiceInterface>(SERVICESTYPES.customerSummaryService).to(CustomerSummaryService);
 
-export default DServiceContainer;
+export default CservicesContainer;

@@ -6,7 +6,7 @@ import { ICustomerSummary } from "../interfaces/schemasinterfaces";
 import { databaseType } from "../../database/databaseTypes";
 
 @injectable()
-export class SeasonService implements ICustomerSummaryServiceInterface {
+export class CustomerSummaryService implements ICustomerSummaryServiceInterface {
   database: SequelizeInstanceFactory;
   customerModel: any;
 

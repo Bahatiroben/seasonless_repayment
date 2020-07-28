@@ -6,7 +6,7 @@ import { IRepaymentUpload } from "../interfaces/schemasinterfaces";
 import { databaseType } from "../../database/databaseTypes";
 
 @injectable()
-export class RepaymentService implements IRepaymentUploadServiceInterface {
+export class RepaymentUploadService implements IRepaymentUploadServiceInterface {
   database: SequelizeInstanceFactory;
   repaymentUploadModel: any;
 

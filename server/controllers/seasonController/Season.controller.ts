@@ -20,7 +20,7 @@ export class SeasonController {
   @inject(responseType)
   protected CustomResponse: IResponse;
 
-  @httpPost("/" ) //insert the middlewares for validations // no auth needed
+  @httpPost("/") //insert the middlewares for validations // no auth needed
   async signup(req: Request, res: Response): Promise<Response> {
     try {
       const season: ISeason = req.body;

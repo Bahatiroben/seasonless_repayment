@@ -4,4 +4,4 @@ export const SERVICESTYPES = {
     customerSummaryService: Symbol('CUSTOMER_SUMMARY_SERVICE'),
     repaymentService: Symbol('REPAYMENT_SERVICE'),
     repaymentUploadService: Symbol('REPAYMENT_UPLOAD_SERVICE')
-}
+} 
