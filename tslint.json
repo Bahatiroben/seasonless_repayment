@@ -1,0 +1,12 @@
+{
+    "extends": "tslint:recommended",
+    "rules": {
+	"no-consecutive-blank-lines": true,
+	"no-console": {
+		   "severity": "warning",
+		   "options": ["log", "info", "debug"]
+		},
+	"quotemark": [true, "single"]
+	}
+    
+}

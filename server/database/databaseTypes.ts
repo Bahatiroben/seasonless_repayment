@@ -1,0 +1,1 @@
+export const databaseType = Symbol('DATABASE');

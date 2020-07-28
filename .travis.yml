@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 13
+cache:
+  directories:
+    - "node_modules"
+install:
+  - npm install
+services:
+  - postgresql
+before_script:
+  - psql -c "CREATE DATABASE expenses_test;" -U postgres
+script:
+  - npm run test

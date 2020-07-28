@@ -1,0 +1,68 @@
+{
+  "name": "expenses-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && nyc mocha --require ts-node/register ./src/tests/**/*.test.ts --timeout 60000 --exit",
+    "build": "tsc -w",
+    "start": "nodemon ./dist/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bahatiroben/expenses-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bahatiroben/expenses-tracker/issues"
+  },
+  "homepage": "https://github.com/Bahatiroben/expenses-tracker#readme",
+  "dependencies": {
+    "@types/sinon": "^9.0.4",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "core-util-is": "^1.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "inversify": "^5.0.1",
+    "inversify-binding-decorators": "^4.0.0",
+    "inversify-express-utils": "^6.3.2",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "nyc": "^15.0.1",
+    "pg": "^8.0.3",
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.21.7",
+    "sequelize-typescript": "^1.1.0",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/bluebird": "^3.5.30",
+    "@types/chai": "^4.2.11",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.6",
+    "@types/joi": "^14.3.4",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.4",
+    "@types/sinon-chai": "^3.2.4",
+    "@types/validator": "^13.0.0",
+    "chai": "^4.2.0",
+    "husky": "^4.2.5",
+    "mocha": "^7.1.2",
+    "nodemon": "^2.0.3",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.2"
+  },
+  "husky": {
+    "pre-commit": "npm run lint",
+    "pre-push": "npm run test"
+  }
+}
