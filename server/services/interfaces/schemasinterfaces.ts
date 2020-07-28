@@ -22,7 +22,7 @@ export interface ISeason {
     endDate: Date;
 }
 
-export interface IcustomerSummary {
+export interface ICustomerSummary {
     customerId: number;
     seasonId: number;
     totalRepaid: number;

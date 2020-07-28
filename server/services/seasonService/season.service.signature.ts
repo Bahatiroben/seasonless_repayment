@@ -3,7 +3,7 @@ import { ISeason } from "../interfaces/schemasinterfaces";
 export interface ISeasonServiceInterface {
   find(where?: any): Promise<ISeason | ISeason[]>;
 
-  create(user: ISeason): Promise<ISeason>;
+  create(season: ISeason): Promise<ISeason>;
 
-  update(user: ISeason, where: any): Promise<number[]>;
+  update(season: ISeason, where: any): Promise<number[]>;
 }

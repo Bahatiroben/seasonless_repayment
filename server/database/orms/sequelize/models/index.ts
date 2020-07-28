@@ -1,1 +1,1 @@
-export { User } from './User.model';
+export { Season } from './Season.model';

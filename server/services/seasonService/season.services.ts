@@ -12,7 +12,7 @@ export class SeasonService implements ISeasonServiceInterface {
 
   constructor(@inject(databaseType) database: SequelizeInstanceFactory) {
     this.database = database;
-    this.seasonModel = this.database.models.User;
+    this.seasonModel = this.database.models.Season;
   }
 
   async find(where: object = {}): Promise<ISeason | ISeason[]> {
@@ -24,18 +24,18 @@ export class SeasonService implements ISeasonServiceInterface {
     }
   }
 
-  async update(user: ISeason, where: any): Promise<number[]> {
+  async update(season: ISeason, where: any): Promise<number[]> {
     try {
-      const result: number[] = await this.seasonModel.update(user, { where });
+      const result: number[] = await this.seasonModel.update(season, { where });
       return result;
     } catch (error) {
       throw error;
     }
   }
 
-  async create(user: ISeason): Promise<ISeason> {
+  async create(season: ISeason): Promise<ISeason> {
     try {
-      const result: any = await this.seasonModel.create(user);
+      const result: any = await this.seasonModel.create(season);
       return result;
     } catch (error) {
       throw error;

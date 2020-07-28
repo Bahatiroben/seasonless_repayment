@@ -12,9 +12,11 @@ export class SequelizeInstanceFactory extends Sequelize{
  async migrate() {
     try {
         this.sync({force:  NODE_ENV === 'test'});
+        this.sync();
+        console.log("connectionString", connectionString);
     } catch(error) {
         console.log(error)
-        throw error;
-    }
+        throw error; 
+    } 
  }
 }
