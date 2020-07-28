@@ -7,5 +7,4 @@ export interface IResponse {
     badMethod: (res: Response, message?: any) => Response;
     unAuthorized: (res: Response, message?: any) => Response;
     forbidden: (res: Response, message?: any) => Response;
-    validationError: (res: Response, message?: any) => Response;
 }

@@ -1,1 +1,1 @@
-export { UserController } from './userController/User.controller'
+export { SeasonController } from './seasonController/Season.controller'

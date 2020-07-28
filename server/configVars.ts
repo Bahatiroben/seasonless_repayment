@@ -7,4 +7,5 @@ export const {
     TEST_DATABASE_URL,
     NODE_ENV,
     JWT_SECRET,
+    PORT
 } = process.env;

@@ -1,6 +1,6 @@
 import {SequelizeInstanceFactory} from './database/orms/sequelize/index';
 import * as models from './database/orms/sequelize/models/index';
-import {UserService} from './services/userServices/user.services';
+import {UserService} from './services/seasonService/season.services';
 import { IUser } from 'services/interfaces/schemasinterfaces';
 import { ContainerFactory } from './globalIoC/index';
 import { databaseType } from './database/databaseTypes';

@@ -1,3 +1,3 @@
 export const SERVICESTYPES = {
-    userService: Symbol('USERSERVICE')
+    seasonService: Symbol('SEASONSERVICE')
 }

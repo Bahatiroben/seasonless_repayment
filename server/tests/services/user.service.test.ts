@@ -1,9 +1,9 @@
 import {expect, should, use as useChai} from 'chai'
 import DServiceContainer from '../../services/servicesIoC/serviceContainer'
 import { SERVICESTYPES } from '../../services/types';
-import { IUserServiceInterfacee } from '../../services/userServices/user.service.signature';
+import { IUserServiceInterfacee } from '../../services/seasonService/user.service.signature';
 import { IUser } from 'services/interfaces/schemasinterfaces';
-import { UserService } from '../../services/userServices/user.services';
+import { UserService } from '../../services/seasonService/user.services';
 import { databaseType } from '../../database/databaseTypes'
 import CDatabaseContainer from '../../database/databaseIoC'
 import {SequelizeInstanceFactory} from '../../database/orms/sequelize/index'

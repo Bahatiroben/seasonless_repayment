@@ -1,2 +1,2 @@
-export { IUserServiceInterfacee } from "./userServices/user.service.signature";
-export { UserService } from "./userServices/user.services";
+export { SeasonService } from "./seasonService/season.services";
+export { ISeasonServiceInterface} from './seasonService/season.service.signature';
