@@ -59,7 +59,7 @@ export class RepaymentUploadController {
               Amount: repaymentUpload.Amount,
             }
 
-            const record = await this.repaymentService.create(repaymentRecord);
+            await this.repaymentService.create(repaymentRecord);
           } else {
             // if no re purchases of the specified customer in that season create an error for that record
             const reason = `Customer ${repaymentUpload.CustomerID} has made no credit puschases in season ${repaymentUpload.SeasonID}`
@@ -78,14 +78,11 @@ export class RepaymentUploadController {
           const oldestCustomerSummary: ICustomerSummary = (customerSummaries.shift() as any).dataValues;
           // get the credits
 
-
-
           const { Credit, TotalRepaid } = oldestCustomerSummary;
           // if there are no more entries (it means we either check if it is an overPay and apply a single positive (adjustment))
           if(customerSummaries.length === 0) {
             // update the oldest customer summary with the ammount
             oldestCustomerSummary.TotalRepaid = oldestCustomerSummary.TotalRepaid + currentRepaymentUpload.Amount;
-            const repaymentRecords: IRepayment[] = [];
 
             if((!(TotalRepaid < Credit)) || ((Credit - currentRepaymentUpload.Amount) >=0)) {
               // if credit is currently fully or over paid, or will get fully or over paid after applying the payment
@@ -95,24 +92,81 @@ export class RepaymentUploadController {
                 Date: currentRepaymentUpload.Date,
                 Amount: currentRepaymentUpload.Amount,
               }
-              repaymentRecords.push(repaymentRecord);
-              // const record = await this.repaymentService.create(repaymentRecord)
+              await this.repaymentService.create(repaymentRecord)
               // save the updated oldest customer summary (where the customer )
               this.customerSummaryService.update(oldestCustomerSummary, {CustomerID: currentRepaymentUpload.CustomerID, SeasonID: oldestCustomerSummary.SeasonID});
             } else {
               // total repaid is less than credit before and after applying the payment
-              
+              // create debit side
+              const PRepaymentRecord: IRepayment = {
+                CustomerID: currentRepaymentUpload.CustomerID,
+                SeasonID: oldestCustomerSummary.SeasonID,
+                Date: currentRepaymentUpload.Date,
+                Amount: currentRepaymentUpload.Amount,
+              }
+              const record = await this.repaymentService.create(PRepaymentRecord);
+              const balance = (oldestCustomerSummary.Credit - oldestCustomerSummary.TotalRepaid) - currentRepaymentUpload.Amount;
 
+              currentRepaymentUpload.Amount = balance;
+
+              const NRepaymentRecord: IRepayment = {
+                CustomerID: currentRepaymentUpload.CustomerID,
+                SeasonID: oldestCustomerSummary.SeasonID,
+                Date: currentRepaymentUpload.Date,
+                Amount: currentRepaymentUpload.Amount,
+                ParentID: (record as any).dataValues.RepaymentID
+              }
+              await this.repaymentService.create(NRepaymentRecord)
             }
           } else {
-            // await Promise.all(repaymentsUploads.map((repaymentUpload) => {
-            //   while(repaymentUpload.Amount > 0) {
-            //     // all logic should be here
-            //     if(!customerSummaries[1]) {
-            //       // if there is only one record, it means that it is either an overpay
-            //     }
-            //   }
-            // }))
+              // total repaid is less than credit before and after applying the payment
+              // create debit side
+              const PRepaymentRecord: IRepayment = {
+                CustomerID: currentRepaymentUpload.CustomerID,
+                SeasonID: oldestCustomerSummary.SeasonID,
+                Date: currentRepaymentUpload.Date,
+                Amount: currentRepaymentUpload.Amount,
+              }
+              const record = await this.repaymentService.create(PRepaymentRecord);
+              const balance = currentRepaymentUpload.Amount - (oldestCustomerSummary.Credit - oldestCustomerSummary.TotalRepaid);
+
+              currentRepaymentUpload.Amount = balance;
+              const ParentID = (record as any).dataValues.RepaymentID
+              const NRepaymentRecord: IRepayment = {
+                CustomerID: currentRepaymentUpload.CustomerID,
+                SeasonID: oldestCustomerSummary.SeasonID,
+                Date: currentRepaymentUpload.Date,
+                Amount: currentRepaymentUpload.Amount * -1,
+                ParentID
+              }
+              // await this.repaymentService.create(NRepaymentRecord);
+              const repaymentRecords: IRepayment[] = [];
+              repaymentRecords.push(NRepaymentRecord)
+              // start on customer summaries that remains can use loops since I wont need any async
+              // remaining implementation should be here
+                while(currentRepaymentUpload.Amount > 0) {
+                  customerSummaries[0].TotalRepaid = customerSummaries[0].TotalRepaid + currentRepaymentUpload.Amount;
+                  const PRepaymentRecord: IRepayment = {
+                    CustomerID: currentRepaymentUpload.CustomerID,
+                    SeasonID: customerSummaries[0].SeasonID,
+                    Date: currentRepaymentUpload.Date,
+                    Amount: currentRepaymentUpload.Amount,
+                  }
+                  const record = await this.repaymentService.create(PRepaymentRecord);
+                  const balance = currentRepaymentUpload.Amount - (customerSummaries[0].Credit - customerSummaries[0].TotalRepaid)
+                  currentRepaymentUpload.Amount = balance;
+                  if(balance > 0) {
+                  const ParentID = (record as any).dataValues.RepaymentID
+                  const NRepaymentRecord: IRepayment = {
+                    CustomerID: currentRepaymentUpload.CustomerID,
+                    SeasonID: customerSummaries[0].SeasonID,
+                    Date: currentRepaymentUpload.Date,
+                    Amount: currentRepaymentUpload.Amount * -1,
+                    ParentID
+                  }
+                }
+
+                }
           }
         }
 
