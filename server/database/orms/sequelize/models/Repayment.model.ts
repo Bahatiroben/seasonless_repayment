@@ -3,6 +3,7 @@ import { IRepayment } from '../../../../services/interfaces/schemasinterfaces';
 
 @Table
 export class Repayment extends Model implements IRepayment {
+    @AutoIncrement
     @PrimaryKey
     @Column
     RepaymentID: number;

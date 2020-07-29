@@ -19,12 +19,12 @@ export interface ICustomerSummary {
 }
 
 export interface IRepayment {
-    RepaymentID: number;
+    RepaymentID?: number;
     CustomerID: number;
     SeasonID: number;
     Date: Date;
     Amount: number;
-    ParentID: number;
+    ParentID?: number;
 }
 
 export interface IRepaymentUpload {
@@ -32,4 +32,9 @@ export interface IRepaymentUpload {
     SeasonID?: number;
     Date: Date;
     Amount: number;
+}
+
+export interface IRepaymentError {
+    message: string;
+    reason: string
 }

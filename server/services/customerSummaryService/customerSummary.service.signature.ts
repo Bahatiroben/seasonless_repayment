@@ -7,5 +7,5 @@ export interface ICustomerSummaryServiceInterface {
 
   bulkCreate(customerSummaries: ICustomerSummary[]): Promise<ICustomerSummary>;
 
-  update(customerSummary: ICustomerSummary): Promise<ICustomerSummary>
+  update(customerSummary: ICustomerSummary, where: Object): Promise<ICustomerSummary>
 }

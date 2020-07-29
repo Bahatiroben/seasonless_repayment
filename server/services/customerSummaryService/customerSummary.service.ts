@@ -42,9 +42,9 @@ export class CustomerSummaryService implements ICustomerSummaryServiceInterface 
     }
   }
 
-  async update(customerSummary: ICustomerSummary): Promise<ICustomerSummary> {
+  async update(customerSummary: ICustomerSummary, where: Object): Promise<ICustomerSummary> {
     try {
-      const result: any = await this.customerModel.update(customerSummary);
+      const result: any = await this.customerModel.update(customerSummary, {where, returning: true, plain: true});
       return result;
     } catch (error) {
       throw error;
