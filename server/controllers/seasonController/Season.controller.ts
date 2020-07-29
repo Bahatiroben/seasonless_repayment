@@ -25,11 +25,11 @@ export class SeasonController {
     try {
       const season: ISeason = req.body;
       const result = <ISeason[]>(
-        await this.seasonService.find({seasonId: season.seasonId})
+        await this.seasonService.find({SeasonID: season.SeasonID})
       );
 
       if (result.length !== 0) {
-        return this.CustomResponse.conflict(res, `Season ${season.seasonName} already exist`);
+        return this.CustomResponse.conflict(res, `Season ${season.SeasonName} already exist`);
       }
 
       return this.CustomResponse.success(

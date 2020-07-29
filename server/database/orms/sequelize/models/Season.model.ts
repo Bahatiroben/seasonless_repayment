@@ -6,14 +6,14 @@ export class Season extends Model implements ISeason {
     @AutoIncrement
     @PrimaryKey
     @Column
-    seasonId: number;
+    SeasonID: number;
 
     @Column
-    seasonName: string;
+    SeasonName: string;
 
     @Column
-    startDate: Date;
+    StartDate: Date;
 
     @Column
-    endDate: Date;
+    EndDate: Date;
 }

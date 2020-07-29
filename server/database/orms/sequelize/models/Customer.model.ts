@@ -6,8 +6,8 @@ export class Customer extends Model implements ICustomer {
     @AutoIncrement
     @PrimaryKey
     @Column
-    customerId: number;
+    CustomerID: number;
 
     @Column
-    customerName: string;
+    CustomerName: string;
 }

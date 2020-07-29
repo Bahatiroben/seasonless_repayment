@@ -4,6 +4,7 @@ import { sequelizeInstance } from "../../index";
 import { SequelizeInstanceFactory } from "../../database/orms/sequelize/index";
 import { ISeason } from "../interfaces/schemasinterfaces";
 import { databaseType } from "../../database/databaseTypes";
+import { Model } from "sequelize/types";
 
 @injectable()
 export class SeasonService implements ISeasonServiceInterface {
@@ -33,9 +34,9 @@ export class SeasonService implements ISeasonServiceInterface {
     }
   }
 
-  async create(season: ISeason): Promise<ISeason> {
+  async bulkCreate(seasons: ISeason[]): Promise<ISeason> {
     try {
-      const result: any = await this.seasonModel.create(season);
+      const result: any = await this.seasonModel.bulkCreate(seasons);
       return result;
     } catch (error) {
       throw error;

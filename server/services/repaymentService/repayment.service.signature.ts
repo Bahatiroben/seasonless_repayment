@@ -5,5 +5,7 @@ export interface IRepaymentServiceInterface {
 
   create(repayment: IRepayment): Promise<IRepayment>;
 
+  bulkCreate(repayments: IRepayment[]): Promise<IRepayment>;
+
   update(repayment: IRepayment): Promise<IRepayment>
 }

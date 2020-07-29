@@ -1,46 +1,35 @@
-export interface ILoginUser {
-    email: string,
-    password: string
-}
-
-export interface IUser extends ILoginUser {
-    id?: number;
-    firstName: string;
-    lastName: string;
-    phoneNumber?: string;
-};
 
 export interface ICustomer {
-    customerId: number;
-    customerName: string
+    CustomerID: number;
+    CustomerName: string
 }
 
 export interface ISeason {
-    seasonId: number;
-    seasonName: string;
-    startDate: Date;
-    endDate: Date;
+    SeasonID: number;
+    SeasonName: string;
+    StartDate: Date;
+    EndDate?: Date;
 }
 
 export interface ICustomerSummary {
-    customerId: number;
-    seasonId: number;
-    totalRepaid: number;
-    totalCredit: number;
+    CustomerID: number;
+    SeasonID: number;
+    TotalRepaid: number;
+    Credit: number;
 }
 
 export interface IRepayment {
-    repaymentId: number;
-    customerId: number;
-    seasonId: number;
-    date: Date;
-    amount: number;
-    parentId: number;
+    RepaymentID: number;
+    CustomerID: number;
+    SeasonID: number;
+    Date: Date;
+    Amount: number;
+    ParentID: number;
 }
 
 export interface IRepaymentUpload {
-    customerId: number;
-    seasonId?: number;
-    date: Date;
-    amount: number;
+    CustomerID: number;
+    SeasonID?: number;
+    Date: Date;
+    Amount: number;
 }

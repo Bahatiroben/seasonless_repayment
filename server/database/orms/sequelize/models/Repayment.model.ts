@@ -5,20 +5,20 @@ import { IRepayment } from '../../../../services/interfaces/schemasinterfaces';
 export class Repayment extends Model implements IRepayment {
     @PrimaryKey
     @Column
-    repaymentId: number;
+    RepaymentID: number;
 
     @Column
-    customerId: number;
+    CustomerID: number;
 
     @Column
-    seasonId: number;
+    SeasonID: number;
 
     @Column
-    amount: number;
+    Amount: number;
 
     @Column
-    parentId: number;
+    ParentID: number;
 
     @Column
-    date: Date;
+    Date: Date;
 }

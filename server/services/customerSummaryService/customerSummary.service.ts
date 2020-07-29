@@ -15,7 +15,7 @@ export class CustomerSummaryService implements ICustomerSummaryServiceInterface 
     this.customerModel = this.database.models.CustomerSummary;
   }
 
-  async find(where: object = {}): Promise<ICustomerSummary | ICustomerSummary[]> {
+  async find(where: object = {}): Promise<ICustomerSummary[]> {
     try {
       const result: any = await this.customerModel.findAll({ where });
       return result;
@@ -27,6 +27,15 @@ export class CustomerSummaryService implements ICustomerSummaryServiceInterface 
   async create(customerSummary: ICustomerSummary): Promise<ICustomerSummary> {
     try {
       const result: any = await this.customerModel.create(customerSummary);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async bulkCreate(customerSummaries: ICustomerSummary[]): Promise<ICustomerSummary> {
+    try {
+      const result: any = await this.customerModel.bulkCreate(customerSummaries);
       return result;
     } catch (error) {
       throw error;

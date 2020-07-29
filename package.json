@@ -6,6 +6,9 @@
   "scripts": {
     "test": "export NODE_ENV=test && nyc mocha --require ts-node/register ./src/tests/**/*.test.ts --timeout 60000 --exit",
     "build": "tsc -w",
+    "migrate": "node ./dist/scripts/migrations --exit",
+    "seed": "node ./dist/scripts/seeds --exit",
+    "migrate:seed": "npm run migrate && npm run seed",
     "start": "nodemon ./dist/index"
   },
   "repository": {
@@ -20,6 +23,7 @@
   },
   "homepage": "https://github.com/Bahatiroben/expenses-tracker#readme",
   "dependencies": {
+    "@types/moment": "^2.13.0",
     "@types/sinon": "^9.0.4",
     "body-parser": "^1.19.0",
     "core-util-is": "^1.0.2",
@@ -30,6 +34,7 @@
     "inversify-binding-decorators": "^4.0.0",
     "inversify-express-utils": "^6.3.2",
     "joi": "^14.3.1",
+    "moment": "^2.27.0",
     "nyc": "^15.0.1",
     "pg": "^8.0.3",
     "pg-hstore": "^2.3.3",
@@ -38,6 +43,7 @@
     "sequelize-typescript": "^1.1.0",
     "sinon": "^9.0.2",
     "sinon-chai": "^3.5.0",
+    "sqlite3": "^5.0.0",
     "typescript": "^3.8.3"
   },
   "devDependencies": {

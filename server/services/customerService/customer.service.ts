@@ -32,4 +32,13 @@ export class CustomerService implements ICustomerServiceInterface {
       throw error;
     }
   }
+
+  async bulkCreate(customers: ICustomer[]): Promise<ICustomer> {
+    try {
+      const result: any = await this.customerModel.bulkCreate(customers);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

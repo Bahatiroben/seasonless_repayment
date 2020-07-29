@@ -33,6 +33,15 @@ export class RepaymentService implements IRepaymentServiceInterface {
     }
   }
 
+  async bulkCreate(repayments: IRepayment[]): Promise<IRepayment> {
+    try {
+      const result: any = await this.repaymentModel.bulkCreate(repayments);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async update(repayment: IRepayment): Promise<IRepayment> {
     try {
       const result: any = await this.repaymentModel.update(repayment);

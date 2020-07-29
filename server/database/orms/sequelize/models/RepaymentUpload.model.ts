@@ -6,17 +6,17 @@ export class RepaymentUpload extends Model implements IRepaymentUpload {
     @AutoIncrement
     @PrimaryKey
     @Column
-    repaymentUploadId: number;
+    RepaymentUploadId: number;
 
     @Column
-    customerId: number;
+    CustomerID: number;
 
     @Column
-    seasonId: number;
+    SeasonID: number;
 
     @Column
-    amount: number;
+    Amount: number;
 
     @Column
-    date: Date;
+    Date: Date;
 } 

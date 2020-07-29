@@ -5,14 +5,15 @@ import { ICustomerSummary } from '../../../../services/interfaces/schemasinterfa
 export class CustomerSummary extends Model implements ICustomerSummary {
     @PrimaryKey
     @Column
-    customerId: number;
+    CustomerID: number;
+
+    @PrimaryKey
+    @Column
+    SeasonID: number;
 
     @Column
-    seasonId: number;
+    Credit: number;
 
     @Column
-    totalCredit: number;
-
-    @Column
-    totalRepaid: number;
+    TotalRepaid: number;
 }
