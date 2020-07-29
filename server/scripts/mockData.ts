@@ -696,3 +696,19 @@ export const mockData = {
 		"Amount": 500
 	}]
 }
+
+/*
+Have 2 tables
+	 Table 1
+		 name: Customer summaries
+		 fields: CustomerID, Credit, TotalRepaid, SeasonID, StartDate
+
+	 Table 2
+		 name: Seasons
+		 fields: SeasonID, seasonName, StartDate
+
+	I want to acheve this: Create sql statement that does: 
+	select all custommer summaries which satisfy this condition
+	 - TotalRepaid < Credit
+	 - CustomerSummary.SeasonID  corresponds to the record in Seasons table with the highest(max) Date
+*/

@@ -1,4 +1,4 @@
-import {Model, Table, Column, PrimaryKey, AutoIncrement } from 'sequelize-typescript';
+import {Model, Table, Column, PrimaryKey, AutoIncrement, Default } from 'sequelize-typescript';
 import { IRepayment } from '../../../../services/interfaces/schemasinterfaces';
 
 @Table
@@ -17,6 +17,7 @@ export class Repayment extends Model implements IRepayment {
     @Column
     Amount: number;
 
+    @Default(null)
     @Column
     ParentID: number;
 
