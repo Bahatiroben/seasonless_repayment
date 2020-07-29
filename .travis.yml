@@ -6,9 +6,5 @@ cache:
     - "node_modules"
 install:
   - npm install
-services:
-  - postgresql
-before_script:
-  - psql -c "CREATE DATABASE expenses_test;" -U postgres
 script:
   - npm run test

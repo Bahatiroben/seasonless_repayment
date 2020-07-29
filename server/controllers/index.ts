@@ -1,1 +1,1 @@
-export { UserController } from './userController/User.controller'
+export { RepaymentUploadController } from './repaymentsController/Repayments.controller';

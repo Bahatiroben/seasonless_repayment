@@ -6,6 +6,7 @@
        "noLib":false,
        "emitDecoratorMetadata":true,
        "experimentalDecorators":true,
+       "allowJs": true,
        "sourceMap":true,
        "pretty":true,
        "allowUnreachableCode":true,

@@ -5,16 +5,17 @@ const {NODE_ENV, DATABASE_URL, DEV_DATABASE_URL, TEST_DATABASE_URL} = config;
 
 const connectionString: string  = NODE_ENV === 'production' ? DATABASE_URL : NODE_ENV === 'test' ? TEST_DATABASE_URL : DEV_DATABASE_URL;
 export class SequelizeInstanceFactory extends Sequelize{
- constructor(seqOptions: SequelizeOptions, uri: string = connectionString){
-    super(uri, seqOptions)
+ constructor(seqOptions: SequelizeOptions){
+    super(seqOptions)
  }
 
- async migrate() {
+ async migrate(force = false) {
     try {
-        this.sync({force:  NODE_ENV === 'test'});
+        this.sync({force:  force || NODE_ENV === 'test'});
+        this.sync();
     } catch(error) {
         console.log(error)
-        throw error;
-    }
+        throw error; 
+    } 
  }
-}
+} 
