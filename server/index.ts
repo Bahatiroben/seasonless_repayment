@@ -5,6 +5,9 @@ import { ContainerFactory } from './globalIoC/index';
 import { databaseType } from './database/databaseTypes';
 import * as dotenv from 'dotenv';
 import * as moment from 'moment';
+import * as cors from 'cors';
+import * as path from 'path';
+import * as express from 'express';
 
 dotenv.config()
 
@@ -23,12 +26,14 @@ server.setConfig((app) => {
     extended: true
   }));
   app.use(bodyParser.json());
-
+  app.use(cors())
+  app.use('/', express.static(path.join(__dirname, '../client/build')));
   app.get('/home', (req, res) => {
     res.status(200).json({status: 200, message: 'welcome to the server'});
   });
 });
 let app = server.build();
-app.listen(3000);
-console.log('Server started on port 3000 ---:)');
+app.listen(process.env.PORT);
+export default app;
+console.log('Server started on port 3001 ---:)');
 

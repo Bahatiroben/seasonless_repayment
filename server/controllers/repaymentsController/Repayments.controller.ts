@@ -47,6 +47,10 @@ export class RepaymentUploadController {
       const repaymentsUploads: IRepaymentUpload[] = (req as any).repaymentsUpload || req.body;
       const repaymentErrors: IRepaymentError[] = [];
 
+      if(!repaymentsUploads.length || repaymentsUploads.length == 0) {
+        return res.status(422).json({message: 'invalid input format'});
+      }
+
       await Promise.all(
 
       repaymentsUploads.map(async repaymentUpload => {
@@ -57,10 +61,10 @@ export class RepaymentUploadController {
         if(SeasonID) {
           try {
           const customerSummaries: ICustomerSummary[] = await this.customerSummaryService.find({CustomerID, SeasonID });
-          if(customerSummaries) {
+          if(customerSummaries && customerSummaries[0]) {
             // if the cutomer summary does exist (the specified user has  purchased something in the specified season)
             // update the customer Summary
-            const customerSummary = (customerSummaries as any).dataValues;
+            const customerSummary = (customerSummaries[0] as any).dataValues;
             customerSummary.TotalRepaid = customerSummary.TotalRepaid + repaymentUpload.Amount;
             this.customerSummaryService.update(customerSummary, { CustomerID, SeasonID });
             // make the repayment record (remember only 1 record for overide);
@@ -169,14 +173,22 @@ export class RepaymentUploadController {
             }
           }
       ));
-
+      
+      const cs: ICustomerSummary[] = await this.customerSummaryService.find({})
       return this.CustomResponse.success(
         res,
-        {errors: repaymentErrors, repaymentRecords},
+        {errors: repaymentErrors, repaymentRecords, customerSummaries: cs},
         repaymentErrors[0] ? 'Repayments applied with errors': 'Repayments applied without errors',
       );
     } catch (error) {
-      throw error;
+      res.status(500).json({message: 'server error'})
     }
+  }
+
+  @httpGet('/all')
+  async allData(req: Request, res: Response): Promise<Response> {
+    const summaries: ICustomerSummary[] = await this.customerSummaryService.find({});
+    const repayments: IRepayment[] | IRepayment = await this.repaymentService.find({});
+    return this.CustomResponse.success(res, {summaries, repayments});
   }
 }
