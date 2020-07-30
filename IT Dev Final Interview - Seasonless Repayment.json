@@ -629,7 +629,8 @@
 		"Credit": 4500,
 		"TotalRepaid": 450
 	}],
-	"RepaymentUploads": [{
+	"RepaymentUploads": 
+	[{
 		"CustomerID": 1,
 		"SeasonID": 180,
 		"Date": "3/3/2016",
