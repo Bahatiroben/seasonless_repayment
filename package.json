@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "export NODE_ENV=test && nyc mocha --require ts-node/register ./src/tests/**/*.test.ts --timeout 60000 --exit",
+    "test": "export NODE_ENV=test && nyc mocha --require ts-node/register ./server/tests/**/*.test.ts --timeout 60000 --exit",
     "build": "tsc -w",
     "migrate": "node ./dist/scripts/migrations --exit",
     "seed": "node ./dist/scripts/seeds --exit",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Bahatiroben/expenses-tracker#readme",
   "dependencies": {
+    "@types/cors": "^2.8.6",
     "@types/moment": "^2.13.0",
     "@types/sinon": "^9.0.4",
     "body-parser": "^1.19.0",

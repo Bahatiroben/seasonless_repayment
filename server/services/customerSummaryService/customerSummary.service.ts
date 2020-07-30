@@ -17,7 +17,7 @@ export class CustomerSummaryService implements ICustomerSummaryServiceInterface 
 
   async find(where: object = {}): Promise<ICustomerSummary[]> {
     try {
-      const result: any = await this.customerModel.findAll({ where, plain: true });
+      const result: any = await this.customerModel.findAll({ where});
       return result;
     } catch (error) {
       throw error;
