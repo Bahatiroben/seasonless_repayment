@@ -110,9 +110,9 @@ export class RepaymentUploadController {
               currentRepaymentUpload.Amount = 0;
             } else {
               currentRepaymentUpload.Amount = balance;
-              customerSummary.TotalRepaid = customerSummary.TotalRepaid + currentRepaymentUpload.Amount
+              customerSummary.TotalRepaid = customerSummary.TotalRepaid + debt;
             }
-            this.customerSummaryService.update((customerSummary as any).dataValues, { CustomerID: currentRepaymentUpload.CustomerID, SeasonID: customerSummary.SeasonID });
+            this.customerSummaryService.update(customerSummary, { CustomerID: currentRepaymentUpload.CustomerID, SeasonID: customerSummary.SeasonID });
 
             const ParentID = (record as any).dataValues.RepaymentID;
             if(balance > 0 && debt > 0) {
@@ -146,9 +146,9 @@ export class RepaymentUploadController {
                   currentRepaymentUpload.Amount = 0;
                 } else {
                   currentRepaymentUpload.Amount = balance;
-                  customerSummary.TotalRepaid = customerSummary.TotalRepaid + currentRepaymentUpload.Amount
+                  customerSummary.TotalRepaid = customerSummary.TotalRepaid + debt
                 }
-                this.customerSummaryService.update((customerSummary as any).dataValues, { CustomerID: currentRepaymentUpload.CustomerID, SeasonID: customerSummary.SeasonID });
+                this.customerSummaryService.update(customerSummary, { CustomerID: currentRepaymentUpload.CustomerID, SeasonID: customerSummary.SeasonID });
 
                 if(balance > 0 && debt > 0) {
                 const ParentID = (record as any).dataValues.RepaymentID
